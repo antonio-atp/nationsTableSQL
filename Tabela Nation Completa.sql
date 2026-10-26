@@ -1,11 +1,9 @@
--- ============================================================
 -- BASE DE DADOS NATION — SCRIPT COMPLETO E ORGANIZADO
 -- Compatível com MySQL / MariaDB
 --
 -- ATENÇÃO: este script APAGA a base de dados `nation`, se existir,
 -- e cria-a novamente com todas as tabelas e os dados de exemplo.
 -- Faça uma cópia de segurança antes de executar se tiver dados seus.
--- ============================================================
 
 DROP DATABASE IF EXISTS `nation`;
 
@@ -15,18 +13,18 @@ CREATE DATABASE `nation`
 
 USE `nation`;
 
--- ============================================================
+
 -- CRIAR TABELA: continents
--- ============================================================
+
 CREATE TABLE `continents` (
   `continent_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`continent_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
--- ============================================================
+
 -- CRIAR TABELA: regions
--- ============================================================
+
 CREATE TABLE `regions` (
   `region_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
@@ -36,9 +34,9 @@ CREATE TABLE `regions` (
   CONSTRAINT `regions_ibfk_1` FOREIGN KEY (`continent_id`) REFERENCES `continents` (`continent_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
--- ============================================================
+
 -- CRIAR TABELA: countries
--- ============================================================
+
 CREATE TABLE `countries` (
   `country_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
@@ -54,18 +52,17 @@ CREATE TABLE `countries` (
   CONSTRAINT `countries_ibfk_1` FOREIGN KEY (`region_id`) REFERENCES `regions` (`region_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=240 DEFAULT CHARSET=utf8;
 
--- ============================================================
+
 -- CRIAR TABELA: languages
--- ============================================================
+
 CREATE TABLE `languages` (
   `language_id` int(11) NOT NULL AUTO_INCREMENT,
   `language` varchar(50) NOT NULL,
   PRIMARY KEY (`language_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=458 DEFAULT CHARSET=utf8;
 
--- ============================================================
 -- CRIAR TABELA: country_languages
--- ============================================================
+
 CREATE TABLE `country_languages` (
   `country_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
@@ -76,9 +73,9 @@ CREATE TABLE `country_languages` (
   CONSTRAINT `country_languages_ibfk_2` FOREIGN KEY (`language_id`) REFERENCES `languages` (`language_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ============================================================
+
 -- CRIAR TABELA: country_stats
--- ============================================================
+
 CREATE TABLE `country_stats` (
   `country_id` int(11) NOT NULL,
   `year` int(11) NOT NULL,
@@ -88,18 +85,18 @@ CREATE TABLE `country_stats` (
   CONSTRAINT `country_stats_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`country_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ============================================================
+
 -- CRIAR TABELA: region_areas
--- ============================================================
+
 CREATE TABLE `region_areas` (
   `region_name` varchar(100) NOT NULL,
   `region_area` decimal(15,2) NOT NULL,
   PRIMARY KEY (`region_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ============================================================
+
 -- INSERIR DADOS
--- ============================================================
+
 
 -- Dados da tabela continents
 INSERT INTO `continents` VALUES (1,'North America'),(2,'Asia'),(3,'Africa'),(4,'Europe'),(5,'South America'),(6,'Oceania'),(7,'Antarctica');
@@ -123,10 +120,10 @@ INSERT INTO `country_stats` VALUES (1,1986,62644,405463417),(1,1987,61833,487602
 INSERT INTO `region_areas` VALUES ('Antarctica',13132101.00),('Australia and New Zealand',8011939.00),('Baltic Countries',175117.00),('British Islands',313173.00),('Caribbean',234423.00),('Central Africa',6612667.00),('Central America',2479532.00),('Eastern Africa',6299891.00),('Eastern Asia',11774482.00),('Eastern Europe',18814094.00),('Melanesia',540774.00),('Micronesia',3102.00),('Micronesia/Caribbean',16.00),('Middle East',4820592.00),('Nordic Countries',1321901.00),('North America',21500515.00),('Northern Africa',8524703.00),('Polynesia',8463.00),('South America',17864926.00),('Southeast Asia',4494801.00),('Southern Africa',2674778.00),('Southern and Central Asia',10791130.00),('Southern Europe',1316392.40),('Western Africa',6138338.00),('Western Europe',1108456.50);
 
 
--- ============================================================
+
 -- FICHA 2 — CONSULTAS SQL
 -- Execute as consultas individualmente no MySQL Workbench.
--- ============================================================
+
 
 -- 1. Selecionar uma coluna
 SELECT name FROM countries;
@@ -285,17 +282,17 @@ INNER JOIN country_stats AS cs
 ORDER BY cs.population DESC
 LIMIT 10;
 
--- ============================================================
+
 -- FIM DO SCRIPT
--- ============================================================
+
 
 -- Consultas adicionais corrigidas da aula de hoje.
 -- Execute depois de selecionar a base de dados `nation`.
 USE `nation`;
 
--- ============================================================
+
 -- FICHA 2 — CONSULTAS ADICIONAIS (AULA DE HOJE)
--- ============================================================
+
 
 -- 22. Nomes dos países pertencentes a regiões do continente Europa.
 -- Na tabela continents, o nome do continente está guardado em inglês: 'Europe'.
