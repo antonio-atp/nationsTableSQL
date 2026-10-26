@@ -22,3 +22,10 @@ A base de dados é composta por **7 tabelas interligadas** por chaves estrangeir
 ---
 
 ## 🗂️ Modelo Relacional (Estrutura Resumida)
+
+[continents] 1 ─── N [regions] 1 ─── N [countries] 1 ─── N [country_stats]
+│
+1
+│
+N
+[country_languages] N ─── 1 [languages]
